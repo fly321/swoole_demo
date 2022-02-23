@@ -12,14 +12,14 @@ $server->set([
  * $reactor_id 线程id
  */
 $server->on('Connect', function ($server, $fd,$reactor_id) {
-    // echo "Client: Connect.\n";
-    var_dump(['客户端唯一标识'=>$fd,"线程id"=>$reactor_id]);
+    echo "Client: Connect{$fd}-{$reactor_id}.\n";
+    // var_dump(['客户端唯一标识'=>$fd,"线程id"=>$reactor_id]);
 });
 
 //监听数据（客户端发送）接收事件
 $server->on('Receive', function ($server, $fd, $reactor_id, $data) {
 
-    $server->send($fd, "Server: {$data}--{$reactor_id}");
+    $server->send($fd, "Server:{$reactor_id} -{$fd} - {$data}");
 });
 
 //监听连接关闭事件
