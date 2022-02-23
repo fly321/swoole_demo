@@ -12,8 +12,9 @@ class WebsocketServer
         print_r($request->fd."hello 连接成功");
     }
 
-    public function onMessage(Swoole\WebSocket\Server $server, Swoole\WebSocket\Frame $frame){
+    public function onMessage(Swoole\WebSocket\Server $ws, Swoole\WebSocket\Frame $frame){
         print_r(['fd'=>$frame->fd,'data'=>$frame->data,'code'=>$frame->opcode]);
+        $ws->push($frame->fd,$frame->data);
     }
 
 
