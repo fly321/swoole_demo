@@ -25,6 +25,10 @@ class WebsocketServer
 
 $obj = new WebsocketServer();
 $ws = new Swoole\WebSocket\Server("0.0.0.0",9501);
+$ws->set([
+    'enable_static_handler'=>true,
+    'document_root'=>'/www/wwwroot/swoole_demo/data'
+]);
 $ws->on('open',array($obj,'onOpen'));
 $ws->on('message',array($obj,'onMessage'));
 $ws->on('close',array($obj,'onClose'));

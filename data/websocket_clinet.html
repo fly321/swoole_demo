@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello websocket</h1>
+<script>
+    let ws = new WebSocket("ws://127.0.0.1:9501");
+    ws.onopen = function(evt){
+        console.log("ws-server_start")
+        ws.send("hehe")
+    }
+
+
+    ws.onmessage=function(evt){
+        console.log("message:"+evt.data)
+    }
+
+    ws.onclose = function(evt){
+        console.log("close")
+    }
+
+    ws.onerror = function(evt,e){
+        console.log("error:"+evt.data)
+        console.log(e)
+    }
+
+</script>
+</body>
+</html>
