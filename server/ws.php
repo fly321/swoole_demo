@@ -44,6 +44,11 @@ class ws
      */
     public function onOpen(Server $ws, Swoole\Http\Request $request){
         print_r($request->fd."hello 连接成功");
+        if($request->fd == 1){
+            swoole_timer_tick(2000,function($time_id){
+               echo "2s:".$time_id."\n";
+            });
+        }
     }
 
     /**
@@ -55,7 +60,13 @@ class ws
      */
     public function onMessage(Swoole\WebSocket\Server $ws, Swoole\WebSocket\Frame $frame){
         print_r(['fd'=>$frame->fd,'data'=>$frame->data,'code'=>$frame->opcode]);
-        $ws->task(['task'=>1,"fd"=>$frame->fd]);
+
+        // $ws->task(['task'=>1,"fd"=>$frame->fd]);
+        swoole_timer_after(5000,function () use($ws,$frame){
+            echo "5s-after\r";
+            $ws->push($frame->fd,"server-time-after");
+        });
+
         $ws->push($frame->fd,$frame->data);
     }
 
