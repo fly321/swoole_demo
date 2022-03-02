@@ -10,4 +10,5 @@ $process = new \Swoole\Process(function(\Swoole\Process $pro){
 },true);
 # 线程id
 $pid = $process->start();
+# 31
 echo $pid.PHP_EOL;
