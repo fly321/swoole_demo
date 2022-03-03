@@ -8,7 +8,8 @@
 $server = new \Swoole\Http\Server("0.0.0.0",9501);
 $server->set([
     'enable_static_handler'=>true,
-    'document_root'=>'/www/wwwroot/swoole_demo/data'
+    'document_root'=>'/www/wwwroot/swoole_demo/data',
+    'worker_num'=>8
 ]);
 $server->on("request", function($request,$response){
     $response->cookie("textsss","flyber",time()+60);
