@@ -5,7 +5,7 @@
  * created on 22:12 2022/3/3 22:12
  * create by xiflys
  */
-$t1 = time();
+echo date("Y-m-d H:i:s").PHP_EOL;
 $workers = [];
 $urls  = [
     "http://sina.com.com/",
@@ -36,4 +36,4 @@ function curl_test($url){
     return $url."SUCCESS".PHP_EOL;
 }
 
-echo time()-$t1;
+echo date("Y-m-d H:i:s").PHP_EOL;
