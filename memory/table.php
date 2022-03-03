@@ -21,8 +21,13 @@ $table->create();
 
 $table->set("hello_fly",array('id'=>1,'money'=>10.1,'name'=>'fly'));
 
-$arr = $table->get('hello_fly');
-var_dump($arr);
+// $table['hello_fly2'] = array('id'=>2,'money'=>10.2,'name'=>'fly2');
 
+# 加 2
+$table->incr('hello_fly','money',2);
+
+var_dump($table->get('hello_fly'));
+$table->del("hello_fly");
+var_dump($table->get('hello_fly'));
 
 
